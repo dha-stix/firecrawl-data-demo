@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Records - Web Scraping Practice</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; background-color: #f4f7f6; }
+        .container { max-width: 1200px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h2 { color: #333; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th { background-color: #2c3e50; color: white; padding: 12px; text-align: left; }
+        td { padding: 10px; border-bottom: 1px solid #ddd; font-size: 14px; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        tr:hover { background-color: #f1f1f1; }
+        .status-completed { color: green; font-weight: bold; }
+        .status-pending { color: orange; font-weight: bold; }
+        .pos-change { color: green; }
+        .neg-change { color: red; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Global Investment Transactions - Q4 2023</h2>
+    <p>Target Table ID: <code>financial-table</code></p>
+    
+    <table id="financial-table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Transaction ID</th>
+                <th>Ticker</th>
+                <th>Company Name</th>
+                <th>Type</th>
+                <th>Quantity</th>
+                <th>Price ($)</th>
+                <th>Total Value ($)</th>
+                <th>Daily Change (%)</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>2023-10-01</td>
+                <td>TXN-99281-A</td>
+                <td>AAPL</td>
+                <td>Apple Inc.</td>
+                <td>Buy</td>
+                <td>50</td>
+                <td>175.45</td>
+                <td>8,772.50</td>
+                <td class="pos-change">+1.25%</td>
+                <td><span class="status-completed">Completed</span></td>
+            </tr>
+            <tr>
+                <td>2023-10-01</td>
+                <td>TXN-88122-B</td>
+                <td>MSFT</td>
+                <td>Microsoft Corp.</td>
+                <td>Sell</td>
+                <td>15</td>
+                <td>321.80</td>
+                <td>4,827.00</td>
+                <td class="neg-change">-0.45%</td>
+                <td><span class="status-completed">Completed</span></td>
+            </tr>
+            <tr>
+                <td>2023-10-02</td>
+                <td>TXN-11029-C</td>
+                <td>TSLA</td>
+                <td>Tesla, Inc.</td>
+                <td>Buy</td>
+                <td>100</td>
+                <td>250.22</td>
+                <td>25,022.00</td>
+                <td class="pos-change">+3.12%</td>
+                <td><span class="status-pending">Pending</span></td>
+            </tr>
+            <tr>
+                <td>2023-10-02</td>
+                <td>TXN-44210-D</td>
+                <td>GOOGL</td>
+                <td>Alphabet Inc.</td>
+                <td>Dividend</td>
+                <td>0</td>
+                <td>0.00</td>
+                <td>450.00</td>
+                <td class="pos-change">0.00%</td>
+                <td><span class="status-completed">Completed</span></td>
+            </tr>
+            <tr>
+                <td>2023-10-03</td>
+                <td>TXN-55921-E</td>
+                <td>AMZN</td>
+                <td>Amazon.com Inc.</td>
+                <td>Buy</td>
+                <td>25</td>
+                <td>127.12</td>
+                <td>3,178.00</td>
+                <td class="neg-change">-1.10%</td>
+                <td><span class="status-completed">Completed</span></td>
+            </tr>
+            <tr>
+                <td>2023-10-03</td>
+                <td>TXN-33211-F</td>
+                <td>NVDA</td>
+                <td>NVIDIA Corporation</td>
+                <td>Sell</td>
+                <td>5</td>
+                <td>445.50</td>
+                <td>2,227.50</td>
+                <td class="pos-change">+2.40%</td>
+                <td><span class="status-completed">Completed</span></td>
+            </tr>
+            <tr>
+                <td>2023-10-04</td>
+                <td>TXN-22100-G</td>
+                <td>META</td>
+                <td>Meta Platforms, Inc.</td>
+                <td>Buy</td>
+                <td>40</td>
+                <td>301.15</td>
+                <td>12,046.00</td>
+                <td class="pos-change">+0.85%</td>
+                <td><span class="status-pending">Pending</span></td>
+            </tr>
+            <tr>
+                <td>2023-10-04</td>
+                <td>TXN-77332-H</td>
+                <td>BRK.B</td>
+                <td>Berkshire Hathaway</td>
+                <td>Buy</td>
+                <td>10</td>
+                <td>355.20</td>
+                <td>3,552.00</td>
+                <td class="neg-change">-0.15%</td>
+                <td><span class="status-completed">Completed</span></td>
+            </tr>
+            <tr>
+                <td>2023-10-05</td>
+                <td>TXN-10101-I</td>
+                <td>V</td>
+                <td>Visa Inc.</td>
+                <td>Sell</td>
+                <td>60</td>
+                <td>230.10</td>
+                <td>13,806.00</td>
+                <td class="pos-change">+1.05%</td>
+                <td><span class="status-completed">Completed</span></td>
+            </tr>
+            <tr>
+                <td>2023-10-05</td>
+                <td>TXN-20202-J</td>
+                <td>JPM</td>
+                <td>JPMorgan Chase & Co.</td>
+                <td>Buy</td>
+                <td>35</td>
+                <td>145.60</td>
+                <td>5,096.00</td>
+                <td class="neg-change">-2.30%</td>
+                <td><span class="status-completed">Completed</span></td>
+            </tr>
+            <tr>
+                <td>2023-10-06</td>
+                <td>TXN-30303-K</td>
+                <td>UNH</td>
+                <td>UnitedHealth Group</td>
+                <td>Dividend</td>
+                <td>0</td>
+                <td>0.00</td>
+                <td>125.75</td>
+                <td class="pos-change">0.00%</td>
+                <td><span class="status-completed">Completed</span></td>
+            </tr>
+            <tr>
+                <td>2023-10-06</td>
+                <td>TXN-40404-L</td>
+                <td>HD</td>
+                <td>Home Depot Inc.</td>
+                <td>Buy</td>
+                <td>12</td>
+                <td>295.40</td>
+                <td>3,544.80</td>
+                <td class="pos-change">+0.40%</td>
+                <td><span class="status-pending">Pending</span></td>
+            </tr>
+            <tr>
+                <td>2023-10-07</td>
+                <td>TXN-50505-M</td>
+                <td>PG</td>
+                <td>Procter & Gamble</td>
+                <td>Sell</td>
+                <td>100</td>
+                <td>145.80</td>
+                <td>14,580.00</td>
+                <td class="neg-change">-0.90%</td>
+                <td><span class="status-completed">Completed</span></td>
+            </tr>
+            <tr>
+                <td>2023-10-07</td>
+                <td>TXN-60606-N</td>
+                <td>MA</td>
+                <td>Mastercard Inc.</td>
+                <td>Buy</td>
+                <td>8</td>
+                <td>395.25</td>
+                <td>3,162.00</td>
+                <td class="pos-change">+1.15%</td>
+                <td><span class="status-completed">Completed</span></td>
+            </tr>
+            <tr>
+                <td>2023-10-08</td>
+                <td>TXN-70707-O</td>
+                <td>LLY</td>
+                <td>Eli Lilly & Co.</td>
+                <td>Buy</td>
+                <td>20</td>
+                <td>580.00</td>
+                <td>11,600.00</td>
+                <td class="pos-change">+4.20%</td>
+                <td><span class="status-completed">Completed</span></td>
+            </tr>
+            <tr>
+                <td>2023-10-08</td>
+                <td>TXN-80808-P</td>
+                <td>ABBV</td>
+                <td>AbbVie Inc.</td>
+                <td>Sell</td>
+                <td>50</td>
+                <td>148.20</td>
+                <td>7,410.00</td>
+                <td class="neg-change">-1.55%</td>
+                <td><span class="status-completed">Completed</span></td>
+            </tr>
+            <tr>
+                <td>2023-10-09</td>
+                <td>TXN-90909-Q</td>
+                <td>COST</td>
+                <td>Costco Wholesale</td>
+                <td>Buy</td>
+                <td>15</td>
+                <td>560.10</td>
+                <td>8,401.50</td>
+                <td class="pos-change">+0.65%</td>
+                <td><span class="status-pending">Pending</span></td>
+            </tr>
+            <tr>
+                <td>2023-10-09</td>
+                <td>TXN-12121-R</td>
+                <td>AVGO</td>
+                <td>Broadcom Inc.</td>
+                <td>Buy</td>
+                <td>4</td>
+                <td>880.50</td>
+                <td>3,522.00</td>
+                <td class="neg-change">-3.10%</td>
+                <td><span class="status-completed">Completed</span></td>
+            </tr>
+            <tr>
+                <td>2023-10-10</td>
+                <td>TXN-13131-S</td>
+                <td>CVX</td>
+                <td>Chevron Corp.</td>
+                <td>Dividend</td>
+                <td>0</td>
+                <td>0.00</td>
+                <td>210.40</td>
+                <td class="pos-change">0.00%</td>
+                <td><span class="status-completed">Completed</span></td>
+            </tr>
+            <tr>
+                <td>2023-10-10</td>
+                <td>TXN-14141-T</td>
+                <td>PEP</td>
+                <td>PepsiCo, Inc.</td>
+                <td>Sell</td>
+                <td>100</td>
+                <td>160.25</td>
+                <td>16,025.00</td>
+                <td class="neg-change">-0.20%</td>
+                <td><span class="status-completed">Completed</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
